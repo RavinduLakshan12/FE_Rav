@@ -1,0 +1,18 @@
+{
+  "name": "prtojectsdgp",
+  "version": "1.0.0",
+  "description": "SDGP PRoject",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DreamEpicWeb",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "Aparna-Indeewari"
+  },
+  "keywords": [
+    "/"
+  ]
+}
