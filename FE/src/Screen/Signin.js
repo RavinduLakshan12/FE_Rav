@@ -5,12 +5,22 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { auth , provider } from '../Config/firebase'
+import { signInWithPopup } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom';
 
 
 import '../Screen/signin.css';
 
 
 export default function Signin() {
+
+    const navigate = useNavigate();
+
+    const signInWithGoogle = async () => {
+        const result = await signInWithPopup(auth, provider);
+        navigate("/studentexam")
+    };
 
     return (
         <div style={{ backgroundColor: '#330A6A' }} >
@@ -102,6 +112,9 @@ export default function Signin() {
                                     </div>
                                     <div style={{ color: 'white', paddingTop: '2vh', paddingLeft: '30%' }}>
                                         Log in using your acount on
+                                    </div>
+                                    <div>
+                                        <Button onClick={signInWithGoogle}>Sign in</Button>
                                     </div>
                                     <div style={{  paddingLeft: '45%',paddingTop:'2vh' }}>
                                     <a href='/#'>
