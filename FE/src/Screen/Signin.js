@@ -5,12 +5,33 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../Config/firebase";
+import { useNavigate } from "react-router-dom";
 
 
 import '../Screen/signin.css';
 
 
 export default function Signin() {
+
+    const navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [ password, setPassword ] = useState('');
+
+    const signIn = (e) => {
+        e.preventDefault();
+        signInWithEmailAndPassword( auth, email, password)
+        .then((userCredential) => {
+            console.log(userCredential);
+            navigate('/studentexam')
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+    };
 
     return (
         <div style={{ backgroundColor: '#330A6A' }} >
@@ -70,14 +91,20 @@ export default function Signin() {
                                 <h4>Sign In</h4>
                             </div>
                             <div style={{ paddingLeft: '5vh', paddingRight: '10vh' }}>
-                                <Form>
+                                <Form onSubmit={signIn}>
                                     <Form.Group className="mb-3" controlId="formBasicEmail" >
-                                        <Form.Control type="username" placeholder="username" style={{ backgroundColor: '#330A6A', border: "2px solid #57B9DD" ,color:'white'}} />
+                                        <Form.Control type="email" 
+                                        placeholder="email" 
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        style={{ backgroundColor: '#330A6A', border: "2px solid #57B9DD" ,color:'white'}} />
 
                                     </Form.Group>
 
                                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                                        <Form.Control type="password" placeholder="Password" style={{ backgroundColor: '#330A6A', border: "2px solid #57B9DD",color:'white' }} />
+                                        <Form.Control type="password" 
+                                        placeholder="Password" 
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        style={{ backgroundColor: '#330A6A', border: "2px solid #57B9DD",color:'white' }} />
                                     </Form.Group>
                                     <Row>
                                         <Col>
@@ -95,7 +122,7 @@ export default function Signin() {
                                     </Row>
                                     <div style={{ paddingLeft: '3vh', paddingRight: '3vh' }}>
                                         <div className="d-grid gap-2">
-                                            <Button size="lg" style={{ backgroundColor: '#57B9DD', color: '#330A6A' }}>
+                                            <Button type="submit" size="lg" style={{ backgroundColor: '#57B9DD', color: '#330A6A' }}>
                                                 Login
                                             </Button>
                                         </div>
