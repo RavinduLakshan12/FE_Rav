@@ -9,7 +9,7 @@ import Studentinfo from "./Screen/Studentinfo";
 
 
 function App() {
-  return (
+  return(
     <BRouter>
       <Routes>
         <Route exact path="/" element={<Signin />} />
