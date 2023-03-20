@@ -6,7 +6,8 @@ import Image from 'react-bootstrap/Image'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { auth } from "../Config/firebase";
+import { auth } from '../Config/firebase';
+
 
 
 export default function Studentexam() {

@@ -6,9 +6,10 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../Config/firebase";
+import {signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
+import { auth, googleProvider } from "../Config/firebase";
 import { useNavigate } from "react-router-dom";
+
 
 
 import '../Screen/signin.css';
@@ -21,17 +22,29 @@ export default function Signin() {
     const [email, setEmail] = useState('');
     const [ password, setPassword ] = useState('');
 
-    const signIn = (e) => {
-        e.preventDefault();
-        signInWithEmailAndPassword( auth, email, password)
-        .then((userCredential) => {
-            console.log(userCredential);
-            navigate('/studentexam')
-        })
-        .catch((error) => {
-            console.log(error)
-        });
+    const signIn = async() => {
+        try{
+            await signInWithEmailAndPassword(auth, email, password)
+
+        }catch(error){
+            console.error(error)
+        }
+        
+
     };
+
+    const signInWithGoogle = async() =>{
+        try{
+            await signInWithPopup(auth, googleProvider)
+            .then((userCredential) => {
+                console.log(userCredential);
+                navigate('/Studentinfo')
+            })
+        }catch(error){
+            console.error(error)
+        }
+        
+    }
 
     return (
         <div style={{ backgroundColor: '#330A6A' }} >
@@ -121,8 +134,8 @@ export default function Signin() {
 
                                     </Row>
                                     <div style={{ paddingLeft: '3vh', paddingRight: '3vh' }}>
-                                        <div className="d-grid gap-2">
-                                            <Button type="submit" size="lg" style={{ backgroundColor: '#57B9DD', color: '#330A6A' }}>
+                                        <div  className="d-grid gap-2">
+                                            <Button onClick={() => {navigate("/Teacherexam")}} type="submit" size="lg" style={{ backgroundColor: '#57B9DD', color: '#330A6A' }}>
                                                 Login
                                             </Button>
                                         </div>
@@ -130,12 +143,12 @@ export default function Signin() {
                                     <div style={{ color: 'white', paddingTop: '2vh', paddingLeft: '30%' }}>
                                         Log in using your acount on
                                     </div>
-                                    <div style={{  paddingLeft: '45%',paddingTop:'2vh' }}>
-                                    <a href='/#'>
+                                    <div onClick={signInWithGoogle} style={{  paddingLeft: '45%',paddingTop:'2vh' }}>
+                                    
                                         <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5 0C9.17717 0 0 8.955 0 20C0 31.045 9.17717 40 20.5 40C31.8211 40 41 31.045 41 20C41 8.955 31.8211 0 20.5 0ZM20.7392 31.6967C14.1313 31.6967 8.78083 26.4633 8.78083 20C8.78083 13.5367 14.1313 8.30333 20.7392 8.30333C23.9679 8.30333 26.6671 9.465 28.7376 11.3517L25.3653 14.6483V14.6417C24.1097 13.4717 22.5175 12.8717 20.7392 12.8717C16.7929 12.8717 13.5864 16.1317 13.5864 19.9933C13.5864 23.8517 16.7929 27.1217 20.7392 27.1217C24.3198 27.1217 26.7559 25.1183 27.2582 22.3683H20.7392V17.8067H31.9885C32.1389 18.59 32.2192 19.4067 32.2192 20.2633C32.2192 26.9467 27.646 31.6967 20.7392 31.6967Z" fill="white" />
                                     </svg>
-                                    </a>
+                                  
                                     </div>
                                     
 
