@@ -109,7 +109,8 @@ export default function Signin() {
                                     <Row>
                                         <Col>
                                             <Form.Group className="mb-3" controlId="formBasicCheckbox" >
-                                                <Form.Check type="checkbox" label="Check me out" style={{ backgroundColor: '#330A6A', color: '#57B9DD' }} />
+                                                <Form.Check type="checkbox" label="
+                                                Remember Me" style={{ backgroundColor: '#330A6A', color: '#57B9DD' }} />
                                             </Form.Group>
                                         </Col>
                                         <Col>
