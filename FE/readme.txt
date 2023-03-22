@@ -6,6 +6,7 @@ http://localhost:3000/exampaper
 http://localhost:3000/studentinfo
 
 
+Run the project using,
 
-npm i
-npm start
+~1. npm i
+~2. npm start
