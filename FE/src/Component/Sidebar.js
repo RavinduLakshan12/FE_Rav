@@ -1,6 +1,5 @@
 import React from "react";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
-import { Link } from 'react-router-dom';
 
 import SideNav, {
   
@@ -38,19 +37,16 @@ class SideNavBar extends React.Component {
             <NavIcon>
               <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
             </NavIcon>
-            <NavText>
-              <Link to="/">
-              Dashboard
-              </Link></NavText>
+            <NavText>Dashboard</NavText>
           </NavItem>
 
           <NavItem eventKey="My Profile">
             <NavIcon>
             </NavIcon>
             <NavText>
-            <Link to="/profile" style={{textDecoration:'none'}}>
+            <a href="/profile" style={{textDecoration:'none'}}>
               My Profile
-              </Link>
+              </a>
               </NavText>
           </NavItem>
 
@@ -58,9 +54,9 @@ class SideNavBar extends React.Component {
             <NavIcon>
             </NavIcon>
             <NavText>
-              <Link to="/studentexam" style={{textDecoration:'none'}}>
+              <a href="/studentexam" style={{textDecoration:'none'}}>
                 Exam
-              </Link>
+              </a>
             </NavText>
           </NavItem>
 
